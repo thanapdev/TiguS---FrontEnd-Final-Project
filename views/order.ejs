@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Order</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- bootstarp link -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+    
+     <!-- nav -->
+     <%- include("partials/header") %>
+    <!-- end nav -->
+    
+    <!-- order --> 
+    <section class="order mt-4">
+        <div class="container">
+            <h2 class="pb-2 mb-4 border-bottom text-center">Your cart</h2>
+        
+            <div class="row g-5">
+                <div class="col-md-5 col-lg-4 p-3 order-md-last ">
+                  <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-dark">Total Price</span>
+                  </h4>
+                  <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                      <div>
+                        <h6 class="my-0">Product name</h6>
+                        <small class="text-muted">Brief description</small>
+                      </div>
+                      <span class="text-muted">$12</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                      <div>
+                        <h6 class="my-0">Second product</h6>
+                        <small class="text-muted">Brief description</small>
+                      </div>
+                      <span class="text-muted">$8</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                      <div>
+                        <h6 class="my-0">Third item</h6>
+                        <small class="text-muted">Brief description</small>
+                      </div>
+                      <span class="text-muted">$5</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between bg-light">
+                      <div class="text-success">
+                        <h6 class="my-0">Promo code</h6>
+                        <small>EXAMPLECODE</small>
+                      </div>
+                      <span class="text-success">−$5</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                      <span>Total (USD)</span>
+                      <strong>$20</strong>
+                    </li>
+                  </ul>
+                  <form class="card p-2">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Promo code">
+                      <button type="submit" class="btn btn-secondary">Redeem</button>
+                    </div>
+                  </form>
+
+                  <div class="card p-3">
+                    <button type="button" class="btn btn-success">Checkout</button>
+                  </div>
+                </div>
+                <div class="col-md-7 col-lg-8 p-3 rounded-3 border shadow-lg">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-dark">Your cart</span>
+                      </h4>
+                      <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                          <div>
+                            <h6 class="my-0">Product name</h6>
+                            <small class="text-muted">Brief description</small>
+                          </div>
+                          <div>
+                            <span >quantity : 1</span>
+                            <button type="button" class="btn btn-warning">Edit</button>
+                            <button type="button" class="btn btn-danger">Remove</button>
+                          </div>
+                          
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                          <div>
+                            <h6 class="my-0">Second product</h6>
+                            <small class="text-muted">Brief description</small>
+                          </div>
+                          <div>
+                            <span >quantity : 1</span>
+                            <button type="button" class="btn btn-warning">Edit</button>
+                            <button type="button" class="btn btn-danger">Remove</button>
+                          </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                          <div>
+                            <h6 class="my-0">Third item</h6>
+                            <small class="text-muted">Brief description</small>
+                          </div>
+                          <div>
+                            <span >quantity : 1</span>
+                            <button type="button" class="btn btn-warning">Edit</button>
+                            <button type="button" class="btn btn-danger">Remove</button>
+                          </div>
+                        </li>
+                      </ul>
+
+                      
+                </div>
+              </div>
+            </div>
+    </section>
+    <!-- end order -->
+
+     <!-- footer -->
+     <%- include("partials/footer") %>
+     <!-- end footer -->
+
+    <!-- bootstrap js -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
