@@ -30,6 +30,9 @@ app.get("/delivery" ,(req,res) =>{
     res.render('delivery')
 })
 
+app.get("/register" ,(req,res) =>{
+    res.render('register')
+})
 app.listen(3000, function () {
     console.log("Server app listening on port 3000");
 });
