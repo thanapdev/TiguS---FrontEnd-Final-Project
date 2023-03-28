@@ -1,0 +1,36 @@
+.cartlist {
+    /* background: red; */
+}
+.cartlist-items {
+  width: 40vw;
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  background: pink;
+}
+.cartlist-left {
+  display: flex;
+  /* background: green; */
+}
+.cartlist-right {
+  display: flex;
+  align-items: center;
+  /* background: blue; */
+}
+.cartlist img {
+  width: 5vw;
+  height: 5vw;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.btnc {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000;
+  cursor: pointer;
+}
