@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- bootstarp link -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+
+    <!-- nav -->
+    <%- include("partials/header") %>
+    <!-- end nav -->
+
+    <!-- cover -->
+    <section id="hero">
+        <div class="hero-container">
+            <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+    
+              <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+    
+              <div class="carousel-inner" role="listbox" >
+    
+                <div class="carousel-item active" style="background-image: url(/img/payment.jpg)">
+                  <div class="carousel-container">
+                    <div class="container">
+                      <h2 class="animate__animated animate__fadeInDown">Proceed to Checkout</h2>
+                      <p class="animate__animated animate__fadeInUp">We truly hope you enjoyed our food, please feel free to visit us again next time </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+    <!-- end cover -->
+    <!-- how to order -->
+    <section class="picorder">
+        <div class="container my-xxl-5 text-center">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+
+              <div class="col">
+                <div class="card mb-4">
+                    <img src="/img/step1.png" class="card-img-top rounded mx-auto d-block mt-3" style="width: 50%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Choose yoour favorite</h5>
+                      <p class="card-text">add order that you want to eat to cart and checkout.</p>
+                    </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card mb-4">
+                    <img src="/img/step3.png" class="card-img-top rounded mx-auto d-block mt-3" style="width: 50%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Payment</h5>
+                      <p class="card-text">Choose your payment method and pay.</p>
+                    </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card mb-4">
+                    <img src="/img/step2.png" class="card-img-top rounded mx-auto d-block mt-3" style="width: 50%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Delivery</h5>
+                      <p class="card-text">Rider come and take your order to delivery to you.</p>
+                    </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card mb-4">
+                    <img src="/img/step4.png" class="card-img-top rounded mx-auto d-block mt-3" style="width: 50%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Finish</h5>
+                      <p class="card-text">Take your order and enjoy your meal.</p>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+    <!-- end howto order -->
+
+    <!-- checkout button -->
+    <section>
+        <div class="container text-center">
+          <a class="btn btn-success btn-lg" href="/menu">Order now</a>
+        </div>    
+    </section>
+    <!-- end checkout button -->
+
+    <!-- footer -->
+    <%- include("partials/footer") %>
+    <!-- end footer -->
+
+    <!-- bootstrap js -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

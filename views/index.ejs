@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- bootstarp link -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+</head>
+<body>
+  <!-- nav -->
+    <%- include("partials/header") %>
+  <!-- end nav -->
+
+    <!-- cover -->
+     <section id="hero">
+        <div class="hero-container">
+          <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+            <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+            <div class="carousel-inner" role="listbox">
+
+              <div class="carousel-item active" style="background-image: url(/img/cover.jpg)">
+                <div class="carousel-container">
+                  <div class="container">
+                    <h2 class="animate__animated animate__fadeInDown">Kaw Mun Kai</h2>
+                    <p class="animate__animated animate__fadeInUp">Kaw Mun Kai is known for its savory, flavorful chicken and fragrant rice, often paired with spicy and tangy condiments, making it a delicious and satisfying meal.</p>
+                    <a href="picorder" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- end cover -->
+
+    <!-- hero -->
+    <section class="hero">
+        <div class="container my-5">
+            <div class="bg-light row align-items-center rounded-3 border shadow-lg">
+              <div class="col-lg-7 p-3 ps-lg-5 pt-lg-5">
+                <h1 class="display-4 fw-bold lh-1">TiguS - Kawmunkai</h1>
+                <p class="lead">There is heaven for people who love kawmunkai ! </p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                  <button type="button" class="btn btn-success btn-lg px-4 me-md-2 fw-bold">All Menu</button>
+                  <!-- <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button> -->
+                </div>
+              </div>
+              <div class="col-lg-5 mt-4 mb-4 overflow-hidden">
+                  <img class=" rounded-lg-3 rounded-3 border" src="/img/hero3.png" alt="" width="100%" height="100%">
+              </div>
+            </div>
+        </div>
+    </section>
+    <!-- end hero -->
+
+    <!-- content -->
+    <section class="content">
+        <div class="container my-5">
+            <div class="row featurette row p-4 align-items-center rounded-3 border bg-success shadow-lg">
+                <div class="col-md-7 text-light">
+                  <h2 class="featurette-heading fw-normal lh-1">Feel the deep taste.</h2>
+                  <p class="lead ">
+                    Soft rice with fried chicken, hot boiled chicken, a touch of irresistibly delicious taste.</p>
+                </div>
+                <div class="col-md-5">
+                  <img class=" rounded-lg-3 rounded-3 border" width="100%" height="100%" src="/img/hero4.jpg" alt="">
+                  
+                </div>
+            </div>            
+        </div>
+
+        <div class="container my-5">
+            <div class="row featurette row p-4 align-items-center rounded-3 border shadow-lg">
+                <div class="col-md-7 order-md-2">
+                  <h2 class="ps-3 featurette-heading fw-normal lh-1">delicious hors d'oeuvres <span class="text-muted">so tasty.</span></h2>
+                  <p class=" ps-3 lead">It's not just rice served with chicken. Even those who only eat chicken can order it!</p>
+                </div>
+                <div class="col-md-5 order-md-1">
+                  <img class=" rounded-lg-3 rounded-3 border" width="100%" height="100%" src="/img/hero5.jpg" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="container my-5">
+            <div class="row featurette row p-4 align-items-center rounded-3 border bg-success shadow-lg">
+                <div class="col-md-7 text-white">
+                  <h2 class="featurette-heading fw-normal lh-1">There is an easy-to-eat menu.</h2>
+                  <p class="lead">The light and smooth broth is even more delicious with the main dish!</p>
+                </div>
+                <div class="col-md-5">
+                  <img class=" rounded-lg-3 rounded-3 border" width="100%" height="100%" src="/img/hero8.jpg" alt="">
+                </div>
+            </div>            
+        </div>
+
+    </section>
+    <!-- end content -->
+
+    <!-- footer -->
+    <%- include("partials/footer") %>
+    <!-- end footer -->
+
+    <!-- bootstrap js -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
