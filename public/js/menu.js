@@ -211,14 +211,13 @@ var product = [{
                             </div>
                             <div class="col-4 text-center">
                                 <p class="">${cart[i].name}</p>
-                                <p class="">${cart[i].price}</p>
+                                <p class="">${cart[i].price * cart[i].count} THB</p>
                             </div>
                             <div class="col-4 text-center">
                                 <div class="input-group">
-                                    <input type="number" id="quantity" name="quantity"  class="form-control input-number" value="${cart[i].count}" min="1">
-                                    <span class="input-group-btn">
-                                        <button type="button" class="btn btn-danger delete-btn">Delete</button>
-                                    </span>
+                                    <p onclick="deinitems('-', ${i})" class="btn btn-success">-</p>
+                                    <p id="countitems${i}" class="pe-3 ps-3 pt-2">${cart[i].count}</p>
+                                    <p onclick="deinitems('+', ${i})" class="btn btn-success">+</p>
                                     </div>
                                 </div>
                             </div>`;
@@ -229,12 +228,6 @@ var product = [{
             $("#mycart").html(`<p>Your cart is currently empty.</p>`)
         }
     }
-
-    $(document).on('click', '.delete-btn', function() {
-        const index = $(this).closest('.row').index(); // get the index of the row
-        cart.splice(index, 1); // remove the item from the cart array
-        rendercart(); // re-render the cart
-    });
     
     
     function deinitems(action, index) {
@@ -257,16 +250,7 @@ var product = [{
                          console.log(cart)
                          rendercart();
                          $("#cartcount").css('display','flex').text(cart.length)
-                         
-                         if(cart.length <= 0) {
-                            $("#cartcount").css('display','none')
-                         }
                       }  
-                      else {
-                        cart[index].count++;
-                        $("#countitems"+index).text(cart[index].count)
-                        rendercart();
-                      }
                     })
                 }
                 rendercart();
