@@ -20,7 +20,7 @@
               <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item">
-                  <a class="nav-link" href="/">Home</a>
+                  <a class="nav-link" href="/home">Home</a>
                 </li>
 
                 <li class="nav-item">
@@ -31,16 +31,16 @@
                   <a class="nav-link" href="/picorder">Order Online</a>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a href="#" class="fas fa-sign-in nav-link btn btn-outline-seccess" data-bs-toggle="modal" data-bs-target="#loginModal"></a>
-                </li>
+                </li> -->
 
                 <li class="nav-item">
                   <a href="#" class="fas fa-shopping-cart nav-link btn btn-outline-seccess" data-bs-toggle="modal" data-bs-target="#cartModal" onclick="opencart()"></a>
                 </li>
 
+                
               </ul>
-
             </div>
           </div>
 
@@ -76,7 +76,7 @@
               </div>
 
               <!-- Login Modal -->
-              <div
+              <!-- <div
               class="modal fade"
               id="loginModal"
               tabindex="-1"
@@ -91,13 +91,13 @@
                       </div>
 
                       <div class="modal-body p-5 pt-0">
-                          <form class="">
+                          <form class="" action="/login" method="post">
                           <div class="form-floating mb-3">
-                              <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
-                              <label for="floatingInput">Email address</label>
+                              <input name="usersname" type="text" class="form-control rounded-3" id="floatingInput" placeholder="username">
+                              <label for="floatingInput">Username</label>
                           </div>
                           <div class="form-floating mb-3">
-                              <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+                              <input name="password" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
                               <label for="floatingPassword">Password</label>
                           </div>
                           <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" type="submit">Sign up</button>
@@ -107,7 +107,7 @@
                       </div>
                   </div>
               </div>
-              </div>
+              </div> -->
 
           <!-- end Modal -->
         </nav>

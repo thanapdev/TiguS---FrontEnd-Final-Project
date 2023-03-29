@@ -1,0 +1,119 @@
+ <!-- nav -->
+ <section class="top-header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+          <div class="container">
+            <a class="navbar-brand" href="/">TiguS</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+          
+              <ul class="navbar-nav ms-auto">
+
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="/menu">Menu</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="/picorder">Order Online</a>
+                </li> -->
+
+                <li class="nav-item">
+                  <a class="fas fa-sign-in nav-link" href="/login"> Login</a>
+                </li>
+
+                <!-- <li class="nav-item">
+                  <a href="#" class="fas fa-sign-in nav-link btn btn-outline-seccess" data-bs-toggle="modal" data-bs-target="#loginModal"></a>
+                </li> -->
+
+                <!-- <li class="nav-item">
+                  <a href="#" class="fas fa-shopping-cart nav-link btn btn-outline-seccess" data-bs-toggle="modal" data-bs-target="#cartModal" onclick="opencart()"></a>
+                </li> -->
+
+              </ul>
+
+            </div>
+          </div>
+
+          <!-- Modal -->
+
+              <!-- Cart Modal -->
+              <div
+              class="modal fade"
+              id="cartModal"
+              tabindex="-1"
+              aria-labelledby="cartModalLabel"
+              aria-hidden="true"
+              >
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content" >
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="cartModalLabel">Your Cart</h5>
+                      <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                      ></button>
+                  </div>
+                  <div class="modal-body" id="mycart">
+                    <!-- cart item -->
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" action="/order" class="btn btn-success">Checkout</button>
+                  </div>
+                  </div>
+              </div>
+              </div>
+
+              <!-- Login Modal -->
+              <!-- <div
+              class="modal fade"
+              id="loginModal"
+              tabindex="-1"
+              aria-labelledby="cartModalLabel"
+              aria-hidden="true"
+              >
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                      <div class="modal-header p-5 pb-4 border-bottom-0">
+                          <h1 class="fw-bold mb-0 fs-2">Sign up for free</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+
+                      <div class="modal-body p-5 pt-0">
+                          <form class="" action="/login" method="post">
+                          <div class="form-floating mb-3">
+                              <input name="usersname" type="text" class="form-control rounded-3" id="floatingInput" placeholder="username">
+                              <label for="floatingInput">Username</label>
+                          </div>
+                          <div class="form-floating mb-3">
+                              <input name="password" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+                              <label for="floatingPassword">Password</label>
+                          </div>
+                          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" type="submit">Sign up</button>
+
+                          <small class="text-muted">You didn't have an account ? <a href="/register">Register</a></small>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+              </div> -->
+
+          <!-- end Modal -->
+        </nav>
+  </section>
+  <!-- end nav -->
