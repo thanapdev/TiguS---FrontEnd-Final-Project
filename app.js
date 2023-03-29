@@ -46,7 +46,6 @@ app.get("/register" ,(req,res) =>{
 app.get("/admin" ,(req,res) =>{
     res.render('admin')
 })
-
 app.listen(3000, function () {
     console.log("Server app listening on port 3000");
 });
