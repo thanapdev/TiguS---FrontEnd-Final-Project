@@ -6,7 +6,7 @@ const db = require('./config/db.js');
 const { name } = require("ejs");
 const { MongoClient } = require("mongodb");
 const session = require("express-session");
-
+const Swal = require('sweetalert');
 
 
 const usersSchema = require('./model/listItem.js').users;
@@ -72,6 +72,7 @@ app.post('/login', async(req, res) => {
     if (reguser) {
         req.session.userId = reguser.id;
         console.log(req.session);
+        
         res.redirect('/home');
     } else {
         res.redirect('/login');        
@@ -86,9 +87,6 @@ app.post('/register', async(req,res) => {
     const regpassword = req.body.password;
 
     const reguser = await usersSchema.findOne({username : regusername , password : regpassword});
-
-    const Swal = require('sweetalert');
-
         if (reguser) {
         res.redirect('/login');
         } else {
