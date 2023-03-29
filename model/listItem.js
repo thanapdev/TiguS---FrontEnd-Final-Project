@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
 
 const usersSchema = new mongoose.Schema({
-  _id: Number,
   name: String,
+  username: String,
   email: String,
   password: String,
-  phone: String,
   address: String
+  
 });
+const DataModel = mongoose.model('inputData' ,usersSchema )
 
 const foodSchema = new mongoose.Schema({
   _id: Number,
@@ -51,3 +52,6 @@ exports.food = mongoose.model("food", foodSchema);
 exports.cart = mongoose.model("cart", cartSchema);
 
 exports.order = mongoose.model("order", orderSchema); 
+
+
+
