@@ -1,364 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- <link rel="stylesheet" href="/css/menu.css" /> -->
+    <!-- Jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+    <!-- js -->
+    <script src="/js/menu.js"></script>
+    <!-- sweet aleart -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- bootstarp link -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-
-</head>
-<body>
-    
-
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <!-- font awsome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
     <!-- nav -->
     <%- include("partials/header") %>
     <!-- end nav-->
-    
+
     <!--catagory-->
     <section class="catagory">
-        <div class="container px-4 py-5" id="custom-cards">
-            <h2 class="pb-2 border-bottom text-center">All menu - Menu catagory</h2>
-            <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-                <!--catagory 1-->
-                <div class="col">
-                    <h3 class="text-dark text-center mb-4 display-6 lh-1 fw-bold">Main Dish</h3>
-                    <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url(/img/maindish.png);">
-                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                            
-                            <ul class="d-flex list-unstyled mt-auto">
-                            <li class="nav-item">
-                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#catagory1">See more</a>
-                            </li>
-                            </ul>
-
-                            <!-- catagory1 Modal -->
-                            <div class="modal fade" id="catagory1" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-xl">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-dark" id="cartModalLabel">Catagory 1</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="container">
-                                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                            <img src="/img/hero3.png" alt="ข้าวมันไก่">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                    <img src="/img/hero2.jpeg" alt="ข้าวมันไก่ทอด">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                    <img src="/img/hero4.jpg" alt="ข้าวมันไก่รวม">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                        
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                    <img src="/img/hero5.jpg" alt="ไก่ทอดจานเดี่ยว" height="220px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                    <img src="/img/hero6.jpg" alt="ไก่ต้มจานเดี่ยว" height="220px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>                                                                                                                                                                                   
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <div class="container px-4 py-5" id="custom-cards">
+        <h2 class="pb-2 mb-5 border-bottom text-center">All menu - Menu catagory</h2>
+        <div class="container">
+            </div>
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-4 mb-4">
+                <div class="col-3 text-center">
+                    <a onclick="searchproduct('all')" class="btn  btn-lg btn-outline-success">All Menu</a>
                 </div>
-
-                <!-- catagory 2 -->
-                <div class="col">
-                    <h3 class="text-dark text-center mb-4 display-6 lh-1 fw-bold">Side Dish</h3>
-                    
-                    <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url(/img/sidedish.png);">
-                        
-                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                            
-                            <ul class="d-flex list-unstyled mt-auto">
-                            <li class="nav-item">
-                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#catagory2">See more</a>
-                            </li>
-                            </ul>
-
-                            <!-- catagory2 Modal -->
-                            <div class="modal fade" id="catagory2" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-xl">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-dark" id="cartModalLabel">Catagory 2</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="container">
-
-                                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                    <img src="/img/hero7.jpg" alt="เครื่องในไก่" height="232px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                        <img src="/img/hero8.jpg" alt="ซุป" height="232px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                        <img src="/img/hero9.jpg" alt="ข้าว" height="232px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                        
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                        <img src="/img/hero10.jpg" alt="น้ำจิ้มไก่ต้ม" height="250px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                        <img src="/img/hero11.jpg" alt="น้ำจิ้มไก่ทอด" height="250px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>                                                                                                                                                                                   
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-3 text-center">
+                    <a onclick="searchproduct('mainDish')" class="btn  btn-lg btn-outline-success">Main Dish</a>
                 </div>
-                <!-- catagory 3 -->
-                <div class="col">
-                    <h3 class="text-dark text-center mb-4 display-6 lh-1 fw-bold">Beverage</h3>
-                    <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url(/img/beverage.png) ;">
-                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                            <ul class="d-flex list-unstyled mt-auto">
-                            <li class="nav-item">
-                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#catagory3">See more</a>
-                            </li>
-                            </ul>
-
-                            <!-- catagory3 Modal -->
-                            <div class="modal fade" id="catagory3" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-xl">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-dark" id="cartModalLabel">Catagory 3</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="container">
-
-                                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                        <img src="/img/hero12.jpeg" alt="" height="270px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                        <img src="/img/hero13.png" alt="" height="270px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                        <img src="/img/hero14.jpg" alt="" height="270px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                        
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                        <img src="/img/hero15.jpg" alt="" height="270px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                        <img src="/img/hero16.jpg" alt="" height="270px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                        <img src="/img/hero17.jpg" alt="" height="270px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                        
-                                                <div class="col">
-                                                    <div class="card shadow-sm">
-                                                        <img src="/img/hero18.png" alt="" height="270px">
-                                                    <div class="card-body">
-                                                        <p class="card-text text-dark">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-outline-success">Add to Cart</button>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>                                                
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-3  text-center">
+                    <a onclick="searchproduct('sideDish')" class="btn  btn-lg btn-outline-success">Side Dish</a>
+                </div>
+                <div class="col-3  text-center">
+                    <a onclick="searchproduct('beverage')" class="btn  btn-lg btn-outline-success">Beverage</a>
                 </div>
             </div>
-        </div>
+
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 " id="productlist" style="border-radius:1.5rem">
+                
+                
+            </div>
+      </div>
     </section>
     <!-- end catagory -->
 
-     <!-- footer -->
-     <%- include("partials/footer") %>
-     <!-- end footer -->
+    <!-- footer -->
+    <%- include("partials/footer") %>
+    <!-- end footer -->
 
     <!-- bootstrap js -->
     <script src="/js/bootstrap.bundle.min.js"></script>
-</body>
+  </body>
 </html>
