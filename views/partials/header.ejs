@@ -2,7 +2,7 @@
  <section class="top-header">
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
           <div class="container">
-            <a class="navbar-brand" href="/index">TiguS</a>
+            <a class="navbar-brand" href="/">TiguS</a>
             <button
               class="navbar-toggler"
               type="button"
@@ -20,7 +20,7 @@
               <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item">
-                  <a class="nav-link" href="/index">Home</a>
+                  <a class="nav-link" href="/">Home</a>
                 </li>
 
                 <li class="nav-item">
@@ -32,11 +32,12 @@
                 </li>
 
                 <li class="nav-item">
-                  <a href="#" class="nav-link btn btn-outline-seccess" data-bs-toggle="modal" data-bs-target="#loginModal">Sign in</a>
+                  <a href="#" class="fa fa-sign-in nav-link btn btn-outline-seccess" data-bs-toggle="modal" data-bs-target="#loginModal"></a>
                 </li>
 
                 <li class="nav-item">
                   <a href="#" class="nav-link btn btn-outline-seccess" data-bs-toggle="modal" data-bs-target="#cartModal" onclick="openCart()">Cart</a>
+
                 </li>
 
               </ul>
@@ -65,7 +66,9 @@
                       aria-label="Close"
                       ></button>
                   </div>
-                  
+                
+                      
+                  </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-success">Checkout</button>
                   </div>
@@ -99,8 +102,8 @@
                               <label for="floatingPassword">Password</label>
                           </div>
                           <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" type="submit">Sign up</button>
-                          <small class="text-muted">You didn't have an account ? <a href="index">Register</a></small>
-                          <hr class="my-4">
+                          <small class="text-muted">You didn't have an account ? <a href="/register">Register</a></small>
+                          <!-- <hr class="my-4">
                           <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
                           <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3" type="submit">
                               <svg class="bi me-1" width="16" height="16"><use xlink:href="#twitter"></use></svg>
@@ -113,7 +116,7 @@
                           <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
                               <svg class="bi me-1" width="16" height="16"><use xlink:href="#github"></use></svg>
                               Sign up with GitHub
-                          </button>
+                          </button> -->
                           </form>
                       </div>
                   </div>
