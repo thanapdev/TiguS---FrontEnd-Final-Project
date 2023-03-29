@@ -136,16 +136,16 @@ var product = [{
                                     <div class="card-body">
                                         <p class="card-text text-dark text-center">${product[i].name} : ${product[i].price} THB </p>
                                         <p class="card-text text-dark">${product[i].descrpition}</p>
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between ">
                                             <div class="btn-group">
-                                                <button onclick="addtocart(${i})" class="btn btn-outline-success">
+                                                <button onclick="addtocart(${i})" class="btn btn-outline-success ">
                                                     Add to Cart
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                    </div>`;
+                            </div>`;
             $("#productlist").html(html);
         }
     })
@@ -205,12 +205,23 @@ var product = [{
         if(cart.length > 0) {
             var htmlcart = '';
             for (let i = 0; i < cart.length; i++) {
-                htmlcart += `<div class="modal-body">
-                                <p>Your cart is currently empty.</p>
+                htmlcart += `<div class="row row-cols-1 row-cols-sm-3 row-cols-md-3 mb-2">
+                                <div class="col-4 text-center">
+                                <img src="${cart[i].img}" style="width: 100px; height: 100px; border-radius: 1.5vw;" alt="">
+                            </div>
+                            <div class="col-4 text-center">
+                                <p class="">${cart[i].name}</p>
+                                <p class="">${cart[i].price}</p>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="input-group">
+                                    <input type="number" id="quantity" name="quantity"  class="form-control input-number" value="${cart[i].count}" min="1">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-danger delete-btn">Delete</button>
+                                    </span>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success">Checkout</button>
-                                </div>`;
+                            </div>`;
             }
             $("#mycart").html(htmlcart)
         }
@@ -218,6 +229,13 @@ var product = [{
             $("#mycart").html(`<p>Your cart is currently empty.</p>`)
         }
     }
+
+    $(document).on('click', '.delete-btn', function() {
+        const index = $(this).closest('.row').index(); // get the index of the row
+        cart.splice(index, 1); // remove the item from the cart array
+        rendercart(); // re-render the cart
+    });
+    
     
     function deinitems(action, index) {
         if(action == '-') {
