@@ -8,19 +8,20 @@
 
      <!-- CSS -->
      <link rel="stylesheet" href="/css/style.css" />
-     <!-- <link rel="stylesheet" href="/css/menu.css" /> -->
+     
+
      <!-- Jquery -->
      <script
        src="https://code.jquery.com/jquery-3.6.4.js"
        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
        crossorigin="anonymous"
      ></script>
-     <!-- js -->
-     <!-- <script src="/js/menu.js"></script> -->
-      <!-- sweet aleart -->
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
      <!-- bootstarp link -->
      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
      <!-- font awsome -->
      <link
        rel="stylesheet"
@@ -64,6 +65,11 @@
                             <small class="">You didn't have an account ? <a href="/register">Register</a></small>
                     </div>
                   </div>
+                   <div>
+                    <% if(message.length > 0) { %>
+                      <div class="alert alert-danger"><%= message %></div>
+                      <% } %>
+                   </div>
             </div>
         </section>
     
