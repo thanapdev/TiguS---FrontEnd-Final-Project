@@ -1,16 +1,16 @@
-const Session = require("../model/listitem").User;
+const Session = require("../model/admin").Admin;
 
 
-module.exports.authentication = async (req, res, next) => {
-    const userId = req.session.userId;
-    if (!userId) {
+module.exports.authenticationadmin = async (req, res, next) => {
+    const adminId = req.session.userId;
+    if (!adminId) {
         return res.redirect('/login?q=session-expired');
     }
     try {
-        const user = await Session.findById(req.session.userId);
+        const admin = await Session.findById(req.session.userId);
         
-        if (!user) {
-            return res.redirect('/login?q=session-expired');
+        if (!admin) {
+            return res.redirect('/logadmin?q=session-expired');
         }
 
         next();
