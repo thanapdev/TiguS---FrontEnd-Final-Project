@@ -5,9 +5,25 @@ const usersSchema = new mongoose.Schema({
   username: String,
   email: String,
   password: String,
-  address: String
   
 });
+
+
+
+exports.User = mongoose.model("user", usersSchema);
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const DataModel = mongoose.model('inputData' ,usersSchema )
 
 // const foodSchema = new mongoose.Schema({
@@ -45,7 +61,10 @@ const usersSchema = new mongoose.Schema({
 //   status: String
 // });
 
-exports.users = mongoose.model("users", usersSchema);
+
+
+
+
 
 // exports.food = mongoose.model("food", foodSchema);
 
