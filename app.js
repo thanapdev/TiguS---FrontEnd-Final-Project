@@ -63,6 +63,10 @@ app.get("/login" ,(req,res) =>{
     res.render('login')
  })
 
+ app.get("/admin" ,(req,res) =>{
+  res.render('admin')
+})
+
  app.get('/home',at.authentication, async (req, res) => {
     try {
       const user = await User.findById(req.session.userId);
@@ -93,34 +97,34 @@ app.post('/login', async(req, res) => {
   }
 });
 
-app.post('/logadmin', async(req, res) => {
-  const adminusername = req.body.adminusersname;
-  const adminpassword = req.body.adminpassword;
-  const regadmin = await Admin.findOne({username : adminusername , password : adminpassword});
-  if (regadmin) {
-      req.session.userId = regadmin.id;
-      console.log(req.session);
-      res.redirect('/admin');
-  } else {
-      res.redirect('/logadmin');        
-      res.send("Error")
-      console.log(req.session);
-  }
-});
+// app.post('/logadmin', async(req, res) => {
+//   const adminusername = req.body.adminusersname;
+//   const adminpassword = req.body.adminpassword;
+//   const regadmin = await Admin.findOne({username : adminusername , password : adminpassword});
+//   if (regadmin) {
+//       req.session.userId = regadmin.id;
+//       console.log(req.session);
+//       res.redirect('/admin');
+//   } else {
+//       res.redirect('/logadmin');        
+//       res.send("Error")
+//       console.log(req.session);
+//   }
+// });
 
-app.get('/admin', adminAuth.authenticationadmin, async (req, res) => {
-  try {
-    const admin = await Admin.findById(req.session.userId);
-    if (admin) {
-      res.render('admin');
-    } else {
-      res.redirect('/logadmin'); 
-    }
-  } catch (error) {
-    console.error('Error retrieving admin:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
+// app.get('/admin', adminAuth.authenticationadmin, async (req, res) => {
+//   try {
+//     const admin = await Admin.findById(req.session.userId);
+//     if (admin) {
+//       res.render('admin');
+//     } else {
+//       res.redirect('/logadmin'); 
+//     }
+//   } catch (error) {
+//     console.error('Error retrieving admin:', error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// });
 
 
 

@@ -1,277 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"
+    />
     <style>
+      .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+        padding: 90px 0 0;
+        box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+        z-index: 99;
+      }
+
+      @media (max-width: 767.98px) {
         .sidebar {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 100;
-            padding: 90px 0 0;
-            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-            z-index: 99;
+          top: 11.5rem;
+          padding: 0;
         }
+      }
 
-        @media (max-width: 767.98px) {
-            .sidebar {
-                top: 11.5rem;
-                padding: 0;
-            }
-        }
-            
+      .navbar {
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      @media (min-width: 767.98px) {
         .navbar {
-            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+          top: 0;
+          position: sticky;
+          z-index: 999;
         }
+      }
 
-        @media (min-width: 767.98px) {
-            .navbar {
-                top: 0;
-                position: sticky;
-                z-index: 999;
-            }
-        }
+      .sidebar .nav-link {
+        color: #333;
+      }
 
-        .sidebar .nav-link {
-            color: #333;
-        }
-
-        .sidebar .nav-link.active {
-            color: #0d6efd;
-        }
+      .sidebar .nav-link.active {
+        color: #0d6efd;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="navbar navbar-light bg-light p-3">
-        
-        
-        <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
-            <div class="mr-3 mt-1">
-                <a class="github-button" href="https://github.com/themesberg/simple-bootstrap-5-dashboard" data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star /themesberg/simple-bootstrap-5-dashboard">Star</a>
-            </div>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-                  Hello, John Doe
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li><a class="dropdown-item" href="#">Settings</a></li>
-                  <li><a class="dropdown-item" href="#">Messages</a></li>
-                  <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
-              </div>
+      <div
+        class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0"
+      >
+        <div class="mr-3 mt-1">
+          <a
+            class="github-button"
+            href="https://github.com/themesberg/simple-bootstrap-5-dashboard"
+            data-color-scheme="no-preference: dark; light: light; dark: light;"
+            data-icon="octicon-star"
+            data-size="large"
+            data-show-count="true"
+            aria-label="Star /themesberg/simple-bootstrap-5-dashboard"
+            >Star</a
+          >
         </div>
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Hello, John Doe
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Messages</a></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
     <div class="container-fluid">
-        <div class="row">
-          <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="position-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                        <span class="ml-2">Dashboard</span>
-                      </a>
-                    </li>
-                  </ul>
-            </div>
+      <div class="row">
+        <nav
+          id="sidebar"
+          class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+        >
+          <div class="position-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-home"
+                  >
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
+                  <span class="ml-2">Dashboard</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </nav>
         <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Overview</li>
-                </ol>
-            </nav>
-            
-                <h1 class="h2">Customer Orders</h1>
-                <p>Order ID of each customer's order</p>
-                
-                <div class="row">
-                    <div class="col-12 col-xl-8 mb-4 mb-lg-0">
-                        <div class="card">
-                            <h5 class="card-header">Orders</h5>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col">Order ID</th>
-                                            <th scope="col">Product name</th>
-                                            <th scope="col">Customer name</th>
-                                            <th scope="col">Total</th>
-                                           
-                                            <th scope="col"></th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <th scope="row">17371705</th>
-                                            <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                            <td>johndoe@gmail.com</td>
-                                            <td>
-                                              <div class="dropdown">
-                                                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  Status
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                  <a class="dropdown-item" href="#">Preparing Meal</a>
-                                                  <a class="dropdown-item" href="#">Awaiting Pick-up</a>
-                                                  <a class="dropdown-item" href="#">On the Way</a>
-                                                  <a class="dropdown-item" href="#">Arrived at your Destination</a>
-                                                </div>
-                                              </div>
-                                            </td>
-                                            
-                                            
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">17370540</th>
-                                            <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                            <td>jacob.monroe@company.com</td>
-                                            <td>
-                                              <div class="dropdown">
-                                                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  Status
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                  <a class="dropdown-item" href="#">Preparing Meal</a>
-                                                  <a class="dropdown-item" href="#">Awaiting Pick-up</a>
-                                                  <a class="dropdown-item" href="#">On the Way</a>
-                                                  <a class="dropdown-item" href="#">Arrived at your Destination</a>
-                                                </div>
-                                              </div>
-                                            </td>
-                                            
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">17371705</th>
-                                            <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                            <td>johndoe@gmail.com</td>
-                                            <td>
-                                              <div class="dropdown">
-                                                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  Status
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                  <a class="dropdown-item" href="#">Preparing Meal</a>
-                                                  <a class="dropdown-item" href="#">Awaiting Pick-up</a>
-                                                  <a class="dropdown-item" href="#">On the Way</a>
-                                                  <a class="dropdown-item" href="#">Arrived at your Destination</a>
-                                                </div>
-                                              </div>
-                                            </td>
-                                            
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">17370540</th>
-                                            <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                            <td>jacob.monroe@company.com</td>
-                                            <td>
-                                              <div class="dropdown">
-                                                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  Status
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                  <a class="dropdown-item" href="#">Preparing Meal</a>
-                                                  <a class="dropdown-item" href="#">Awaiting Pick-up</a>
-                                                  <a class="dropdown-item" href="#">On the Way</a>
-                                                  <a class="dropdown-item" href="#">Arrived at your Destination</a>
-                                                </div>
-                                              </div>
-                                            </td>
-                                            
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">17371705</th>
-                                            <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                            <td>johndoe@gmail.com</td>
-                                            <td>
-                                              <div class="dropdown">
-                                                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  Status
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                  <a class="dropdown-item" href="#">Preparing Meal</a>
-                                                  <a class="dropdown-item" href="#">Awaiting Pick-up</a>
-                                                  <a class="dropdown-item" href="#">On the Way</a>
-                                                  <a class="dropdown-item" href="#">Arrived at your Destination</a>
-                                                </div>
-                                              </div>
-                                            </td>
-                                            
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">17370540</th>
-                                            <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                            <td>jacob.monroe@company.com</td>
-                                            <td>
-                                              <div class="dropdown">
-                                                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  Status
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                  <a class="dropdown-item" href="#">Preparing Meal</a>
-                                                  <a class="dropdown-item" href="#">Awaiting Pick-up</a>
-                                                  <a class="dropdown-item" href="#">On the Way</a>
-                                                  <a class="dropdown-item" href="#">Arrived at your Destination</a>
-                                                </div>
-                                              </div>
-                                            </td>
-                                            
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                </div>
-                                <a href="#" class="btn btn-block btn-light">View all</a>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Overview
+              </li>
+            </ol>
+          </nav>
+
+          <h1 class="h2">Customer Orders</h1>
+          <p>Order ID of each customer's order</p>
+
+          <div class="row">
+            <div class="col-12 col-xl-12 mb-4 mb-lg-0">
+              <div class="card">
+                <h5 class="card-header">Orders</h5>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Order ID</th>
+                          <th scope="col">Product name</th>
+                          <th scope="col">Customer name</th>
+                          <th scope="col">Total</th>
+
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">17371705</th>
+                          <td>Volt Premium Bootstrap 5 Dashboard</td>
+                          <td>johndoe@gmail.com</td>
+                          <td>
+                            <div class="dropdown1">
+                              <button
+                                class="btn btn-info dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton1"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                Status 1
+                              </button>
+
+                              <div
+                                class="dropdown-menu"
+                                aria-labelledby="dropdown"
+                                id="dropdown"
+                              >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-value="On Cooking"
+                                  >On Cooking</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-value="Rider Take your order"
+                                  >Rider Take your order</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-value="Order Arrived"
+                                  >Order Arrived</a
+                                >
+                                
+                              </div>
                             </div>
-                        </div>
-                    </div>
-                    
+                          </td>
+
+                          <td>
+                            <a href="#" class="btn btn-sm btn-primary">View</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">17371705</th>
+                          <td>Volt Premium Bootstrap 5 Dashboard</td>
+                          <td>johndoe@gmail.com</td>
+                          <td>
+                            <div class="dropdown2">
+                              <button
+                                class="btn btn-info dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton2"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                Status 2
+                              </button>
+
+                              <div
+                                class="dropdown-menu"
+                                aria-labelledby="dropdown"
+                                id="dropdown"
+                              >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-value="On Cooking"
+                                  >On Cooking</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-value="Rider Take your order"
+                                  >Rider Take your order</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-value="Order Arrived"
+                                  >Order Arrived</a
+                                >
+                                
+                              </div>
+                            </div>
+                          </td>
+
+                          <td>
+                            <a href="#" class="btn btn-sm btn-primary">View</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">17371705</th>
+                          <td>Volt Premium Bootstrap 5 Dashboard</td>
+                          <td>johndoe@gmail.com</td>
+                          <td>
+                            <div class="dropdown3">
+                              <button
+                                class="btn btn-info dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton3"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                Status 3
+                              </button>
+
+                              <div
+                                class="dropdown-menu"
+                                aria-labelledby="dropdown"
+                                id="dropdown"
+                              >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-value="On Cooking"
+                                  >On Cooking</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-value="Rider Take your order"
+                                  >Rider Take your order</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-value="Order Arrived"
+                                  >Order Arrived</a
+                                >
+                                
+                              </div>
+                            </div>
+                          </td>
+
+                          <td>
+                            <a href="#" class="btn btn-sm btn-primary">View</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">17370540</th>
+                          <td>Pixel Pro Premium Bootstrap UI Kit</td>
+                          <td>jacob.monroe@company.com</td>
+                          <td>
+                            <div class="dropdown">
+                              <button
+                                class="btn btn-info dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton4"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                Status 4
+                              </button>
+                              <div
+                                class="dropdown-menu"
+                                aria-labelledby="dropdown"
+                                id="dropdown"
+                              >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-value="On Cooking"
+                                  >On Cooking</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-value="Rider Take your order"
+                                  >Rider Take your order</a
+                                >
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-value="Order Arrived"
+                                  >Order Arrived</a
+                                >
+                                
+                              </div>
+                            </div>
+                            <script>
+                              function createDropdown(buttonId, itemsSelector) {
+                                // Get the dropdown button and dropdown items
+                                const dropdownButton = document.getElementById(buttonId);
+                                const dropdownItems = dropdownButton.nextElementSibling.querySelectorAll(itemsSelector);
+                            
+                                // Add a click event listener to each dropdown item
+                                dropdownItems.forEach((item) => {
+                                  item.addEventListener('click', (event) => {
+                                    // Prevent the default link behavior
+                                    event.preventDefault();
+                            
+                                    // Get the value of the clicked dropdown item
+                                    const value = item.dataset.value;
+                            
+                                    // Update the text of the dropdown button
+                                    dropdownButton.textContent = value;
+                                  });
+                                });
+                              }
+                            
+                              // Create the first dropdown
+                              createDropdown('dropdownMenuButton1', '.dropdown-item');
+                            
+                              // Create the second dropdown
+                              createDropdown('dropdownMenuButton2', '.dropdown-item');
+
+                              // Create the third dropdown
+                              createDropdown('dropdownMenuButton3', '.dropdown-item');
+
+                              // Create the fourth dropdown
+                              createDropdown('dropdownMenuButton4', '.dropdown-item');
+                            </script>
+                          </td>
+
+                          <td>
+                            <a href="#" class="btn btn-sm btn-primary">View</a>
+                          </td>
+                        </tr>
+                        
+                        
+                        
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                  <a href="#" class="btn btn-block btn-light">View all</a>
                 </div>
-                <footer class="pt-5 d-flex justify-content-between">
-                    <span>Copyright © 2022-2023 <a href="/home">TiguS</a></span>
-                    <ul class="nav m-0">
-                        <li class="nav-item">
-                          <a class="nav-link text-secondary" aria-current="page" href="#">Privacy Policy</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link text-secondary" href="#">Terms and conditions</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link text-secondary" href="#">Contact</a>
-                        </li>
-                      </ul>
-                </footer>
-            </main>
-        </div>
+              </div>
+            </div>
+          </div>
+          <footer class="pt-5 d-flex justify-content-between">
+            <span>Copyright © 2022-2023 <a href="/home">TiguS</a></span>
+            <ul class="nav m-0">
+              <li class="nav-item">
+                <a class="nav-link text-secondary" aria-current="page" href="#"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#"
+                  >Terms and conditions</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Contact</a>
+              </li>
+            </ul>
+          </footer>
+        </main>
+      </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script>
-        new Chartist.Line('#traffic-chart', {
-            labels: ['January', 'Februrary', 'March', 'April', 'May', 'June'],
-            series: [
-                [23000, 25000, 19000, 34000, 56000, 64000]
-            ]
-            }, {
-            low: 0,
-            showArea: true
-        });
+      new Chartist.Line(
+        "#traffic-chart",
+        {
+          labels: ["January", "Februrary", "March", "April", "May", "June"],
+          series: [[23000, 25000, 19000, 34000, 56000, 64000]],
+        },
+        {
+          low: 0,
+          showArea: true,
+        }
+      );
     </script>
-</body>
+  </body>
 </html>

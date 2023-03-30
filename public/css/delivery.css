@@ -1,0 +1,66 @@
+/* Navbar styles */
+.navbar {
+    background-color: #28a745;
+    padding: 1rem;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.nav-item {
+    margin-right: 1rem;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.btn-outline-seccess {
+    color: #28a745;
+    background-color: #fff;
+    border-color: #28a745;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.fas {
+    color: #fff;
+    margin-right: 0.5rem;
+}
+
+/* Modal styles */
+.modal {
+    font-size: 1.2rem;
+}
+
+.modal-header {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.btn-close {
+    color: #fff;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-footer {
+    padding: 1rem;
+}
