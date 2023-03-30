@@ -7,15 +7,20 @@ const { name } = require("ejs");
 const { MongoClient } = require("mongodb");
 const session = require("express-session");
 const Swal = require('sweetalert');
+const flash = require('connect-flash');
 
 const adminAuth = require('./control/adminauth');
 const at =require('./control/authen');
 const {User} = require('./model/user');
 const {Admin} = require('./model/admin');
+// Configure session middleware
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false
+}));
 
-// const foodSchema = require('./model/listItem.js').food;
-// const cartSchema = require('./model/listItem.js').cart;
-// const orderSchema = require('./model/listItem.js').order;
+app.use(flash());
 
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
@@ -59,8 +64,13 @@ app.get("/logadmin" ,(req,res) =>{
     res.render('logadmin')
 })
 
+app.get("/logadmin" ,(req,res) =>{
+  res.render('logadmin')
+})
+
+
 app.get("/login" ,(req,res) =>{
-    res.render('login')
+    res.render('login',{message: req.flash('message')})
  })
 
  app.get('/home',at.authentication, async (req, res) => {
@@ -85,42 +95,45 @@ app.post('/login', async(req, res) => {
   if (reguser) {
       req.session.userId = reguser.id;
       console.log(req.session);
-      
       res.redirect('/home');
   } else {
-      res.redirect('/login');        
+    
+      res.redirect('/login');
       res.send("Error")
   }
 });
 
-app.post('/logadmin', async(req, res) => {
-  const adminusername = req.body.adminusersname;
-  const adminpassword = req.body.adminpassword;
-  const regadmin = await Admin.findOne({username : adminusername , password : adminpassword});
+app.post('/logadmin', async (req, res) => {
+  const username = req.body.adminusername;
+  const password = req.body.adminpassword;
+
+  // Find the admin in the database
+  const regadmin = await Admin.findOne({ username: username, password: password });
+
+  // If the admin exists, create a session and redirect to the admin page
   if (regadmin) {
-      req.session.userId = regadmin.id;
-      console.log(req.session);
-      res.redirect('/admin');
+    req.session.userId = regadmin.id;
+    console.log(req.session);
+    res.redirect('/admin');
   } else {
-      res.redirect('/logadmin');        
-      res.send("Error")
-      console.log(req.session);
+    res.redirect('/logadmin'); 
+    res.send('Error: Invalid username or password.');
   }
 });
 
-app.get('/admin', adminAuth.authenticationadmin, async (req, res) => {
-  try {
-    const admin = await Admin.findById(req.session.userId);
-    if (admin) {
-      res.render('admin');
-    } else {
-      res.redirect('/logadmin'); 
-    }
-  } catch (error) {
-    console.error('Error retrieving admin:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
+// app.get('/admin', adminAuth.authenticationadmin, async (req, res) => {
+//   try {
+//     const admin = await Admin.findById(req.session.userId);
+//     if (admin) {
+//       res.render('admin');
+//     } else {
+//       res.redirect('/logadmin'); 
+//     }
+//   } catch (error) {
+//     console.error('Error retrieving admin:', error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// });
 
 
 
@@ -172,6 +185,7 @@ app.post('/logout', (req, res) => {
       res.redirect('/');
     }
   })
+
 
 
 app.listen(3000, function () {

@@ -70,11 +70,13 @@
                       aria-label="Close"
                       ></button>
                   </div>
-                  <div class="modal-body" id="mycart">
-                    <!-- cart item -->
-                  </div>
+                  <form id="cart-form" action="/order" method="post">
+                    <div class="modal-body" id="mycart">
+                      <!-- cart item -->
+                    </div>
+                  </form>
                   <div class="modal-footer">
-                      <button type="button" action="/order" class="btn btn-success">Checkout</button>
+                    <button type="submit" class="btn btn-success">Checkout</button>
                   </div>
                   </div>
               </div>
