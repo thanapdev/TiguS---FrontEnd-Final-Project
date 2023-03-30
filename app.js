@@ -8,7 +8,7 @@ const { MongoClient } = require("mongodb");
 const session = require("express-session");
 const Swal = require('sweetalert');
 
-const atadmin =require('./control/adminauth');
+const adminAuth = require('./control/adminauth');
 const at =require('./control/authen');
 const {User} = require('./model/user');
 const {Admin} = require('./model/admin');
@@ -30,9 +30,6 @@ app.use(session({
     cookie: { maxAge: 3600000 }, //oneS hour
     mongoUrl : ({mongoUrl: "mongodb://127.0.0.1:27017/TiguSDB"}),
   }));
-
-
-
 
 app.get("/" ,(req,res) =>{
     res.render('index')
@@ -58,14 +55,9 @@ app.get("/delivery" ,(req,res) =>{
     res.render('delivery')
 })
 
-app.get("/admin" ,(req,res) =>{
-    res.render('admin')
-})
-
 app.get("/logadmin" ,(req,res) =>{
     res.render('logadmin')
 })
-
 
 app.get("/login" ,(req,res) =>{
     res.render('login')
@@ -101,35 +93,34 @@ app.post('/login', async(req, res) => {
   }
 });
 
-// app.get('/admin',atadmin.authenticationadmin, async (req, res) => {
-//     try {
-//       const admin = await Admin.findById(req.session.userId);
-//       if (admin) {
-//         const username = Admin.username;
-//         res.render('/admin', { Username: username });
-//       } else {
-//         res.redirect('/logadmin'); 
-//       }
-//     } catch (error) {
-//       console.error('Error retrieving user:', error);
-//       res.status(500).send('Internal Server Error');
-//     }
-// });
+app.post('/logadmin', async(req, res) => {
+  const adminusername = req.body.adminusersname;
+  const adminpassword = req.body.adminpassword;
+  const regadmin = await Admin.findOne({username : adminusername , password : adminpassword});
+  if (regadmin) {
+      req.session.userId = regadmin.id;
+      console.log(req.session);
+      res.redirect('/admin');
+  } else {
+      res.redirect('/logadmin');        
+      res.send("Error")
+      console.log(req.session);
+  }
+});
 
-// app.post('/logadmin', async(req, res) => {
-//   const usersname = req.body.adminusersname;
-//   const password = req.body.adminpassword;
-//   const reguser = await Admin.findOne({username : usersname , password : password});
-//   if (reguser) {
-//       req.session.userId = reguser.id;
-//       console.log(req.session);
-      
-//       res.redirect('admin');
-//   } else {
-//       res.redirect('/logadmin');        
-//       res.send("Error")
-//   }
-// });
+app.get('/admin', adminAuth.authenticationadmin, async (req, res) => {
+  try {
+    const admin = await Admin.findById(req.session.userId);
+    if (admin) {
+      res.render('admin');
+    } else {
+      res.redirect('/logadmin'); 
+    }
+  } catch (error) {
+    console.error('Error retrieving admin:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 
 
@@ -139,32 +130,32 @@ app.get("/register" ,(req,res) =>{
 
 app.post('/register', async(req,res) => {
   // user
-      const regemail = req.body.email;
-      const regusername = req.body.usersname;
-      const regname = req.body.name;
-      const regpassword = req.body.password;
+      // const regemail = req.body.email;
+      // const regusername = req.body.usersname;
+      // const regname = req.body.name;
+      // const regpassword = req.body.password;
 
-    // admin
-    // const adminregemail = req.body.email;
-    // const adminregusername = req.body.usersname;
-    // const adminregname = req.body.name;
-    // const adminregpassword = req.body.password;
+    admin
+    const adminregemail = req.body.email;
+    const adminregusername = req.body.usersname;
+    const adminregname = req.body.name;
+    const adminregpassword = req.body.password;
 
-    const reguser = await User.findOne({username : regusername , password : regpassword});
-        if (reguser) {
-        res.redirect('/login');
-        } else {
-        const unreguser = new User({name: regname, email: regemail, username: regusername, password: regpassword});
-        unreguser.save();
-        }
+    // const reguser = await User.findOne({username : regusername , password : regpassword});
+    //     if (reguser) {
+    //     res.redirect('login');
+    //     } else {
+    //     const unreguser = new User({name: regname, email: regemail, username: regusername, password: regpassword});
+    //     unreguser.save();
+    //     }
         
-      // const regadmin = await Admin.findOne({username : adminregusername , password : adminregpassword});
-      //   if (regadmin) {
-      //   res.redirect('/logadmin');
-      //   } else {
-      //   const unregadmin = new Admin({name: adminregname, email: adminregemail, username: adminregusername, password: adminregpassword});
-      //   unregadmin.save();
-      //   }
+      const regadmin = await Admin.findOne({username : adminregusername , password : adminregpassword});
+        if (regadmin) {
+        res.redirect('/');
+        } else {
+        const unregadmin = new Admin({name: adminregname, email: adminregemail, username: adminregusername, password: adminregpassword});
+        unregadmin.save();
+        }
 
 })
 
