@@ -123,7 +123,9 @@ async function run() {
           type:"beverage"}
     ];
     
-
+            const result = await coll.insertMany(docs);
+            console.log('Documents were inserted');
+            console.log(result.insertedIds);
     
   } finally {
     await client.close();
@@ -132,3 +134,4 @@ async function run() {
 run().catch(console.dir);
   
 };
+
