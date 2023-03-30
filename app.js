@@ -8,8 +8,10 @@ const { MongoClient } = require("mongodb");
 const session = require("express-session");
 const Swal = require('sweetalert');
 
+const atadmin =require('./control/adminauth');
 const at =require('./control/authen');
 const {User} = require('./model/user');
+const {Admin} = require('./model/admin');
 
 // const foodSchema = require('./model/listItem.js').food;
 // const cartSchema = require('./model/listItem.js').cart;
@@ -84,10 +86,25 @@ app.get("/login" ,(req,res) =>{
     }
 });
 
-// app.get('/logadmin',at.adminauth, async (req, res) => {
+app.post('/login', async(req, res) => {
+  const usersname = req.body.usersname;
+  const password = req.body.password;
+  const reguser = await User.findOne({username : usersname , password : password});
+  if (reguser) {
+      req.session.userId = reguser.id;
+      console.log(req.session);
+      
+      res.redirect('/home');
+  } else {
+      res.redirect('/login');        
+      res.send("Error")
+  }
+});
+
+// app.get('/admin',atadmin.authenticationadmin, async (req, res) => {
 //     try {
-//       const user = await Admin.findById(req.session.userId);
-//       if (user) {
+//       const admin = await Admin.findById(req.session.userId);
+//       if (admin) {
 //         const username = Admin.username;
 //         res.render('/admin', { Username: username });
 //       } else {
@@ -99,30 +116,39 @@ app.get("/login" ,(req,res) =>{
 //     }
 // });
 
+// app.post('/logadmin', async(req, res) => {
+//   const usersname = req.body.adminusersname;
+//   const password = req.body.adminpassword;
+//   const reguser = await Admin.findOne({username : usersname , password : password});
+//   if (reguser) {
+//       req.session.userId = reguser.id;
+//       console.log(req.session);
+      
+//       res.redirect('admin');
+//   } else {
+//       res.redirect('/logadmin');        
+//       res.send("Error")
+//   }
+// });
 
-app.post('/login', async(req, res) => {
-    const usersname = req.body.usersname;
-    const password = req.body.password;
-    const reguser = await User.findOne({username : usersname , password : password});
-    if (reguser) {
-        req.session.userId = reguser.id;
-        console.log(req.session);
-        
-        res.redirect('/home');
-    } else {
-        res.redirect('/login');        
-    }
-});
+
 
 app.get("/register" ,(req,res) =>{
     res.render('register')
  })
 
 app.post('/register', async(req,res) => {
-    const regemail = req.body.email;
-    const regusername = req.body.usersname;
-    const regname = req.body.name;
-    const regpassword = req.body.password;
+  // user
+      const regemail = req.body.email;
+      const regusername = req.body.usersname;
+      const regname = req.body.name;
+      const regpassword = req.body.password;
+
+    // admin
+    // const adminregemail = req.body.email;
+    // const adminregusername = req.body.usersname;
+    // const adminregname = req.body.name;
+    // const adminregpassword = req.body.password;
 
     const reguser = await User.findOne({username : regusername , password : regpassword});
         if (reguser) {
@@ -132,6 +158,13 @@ app.post('/register', async(req,res) => {
         unreguser.save();
         }
         
+      // const regadmin = await Admin.findOne({username : adminregusername , password : adminregpassword});
+      //   if (regadmin) {
+      //   res.redirect('/logadmin');
+      //   } else {
+      //   const unregadmin = new Admin({name: adminregname, email: adminregemail, username: adminregusername, password: adminregpassword});
+      //   unregadmin.save();
+      //   }
 
 })
 
@@ -148,33 +181,6 @@ app.post('/logout', (req, res) => {
       res.redirect('/');
     }
   })
-
-// app.post("/register" , async (req, res) =>{
-//     const uri = 'mongodb://127.0.0.1:27017/TiguSDB';
-//     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-//    try {
-//     await client.connect();
-
-//     const collection = client.db('TiguSDB').collection('users');
-//     const user = {
-//         name: req.body.FirstName,
-//         username: req.body.Username,
-//         email: req.body.Email,
-//         password: req.body.Password,
-//         address: req.body.ddress
-//     };
-
-//     const result = await collection.insertOne(user);
-//     console.log(`Inserted ${result.insertedCount} documents`);
-
-//     res.redirect('/');
-//    } catch (error) {
-//     console.error(error);
-//     res.status(500).send('Error submitting data');
-//    } finally {
-//     await client.close();
-//    }
-// })
 
 
 app.listen(3000, function () {
