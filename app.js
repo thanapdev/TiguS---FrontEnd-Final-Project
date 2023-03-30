@@ -114,10 +114,10 @@ app.post('/logadmin', async (req, res) => {
   if (regadmin) {
     req.session.userId = regadmin.id;
     console.log(req.session);
-    res.redirect('/admin');
+    return res.redirect('/admin');
   } else {
     res.redirect('/logadmin'); 
-    res.send('Error: Invalid username or password.');
+      res.send('Error: Invalid username or password.');
   }
 });
 
@@ -138,37 +138,37 @@ app.post('/logadmin', async (req, res) => {
 
 
 app.get("/register" ,(req,res) =>{
-    res.render('register')
+   return res.render('register')
  })
 
 app.post('/register', async(req,res) => {
   // user
-      // const regemail = req.body.email;
-      // const regusername = req.body.usersname;
-      // const regname = req.body.name;
-      // const regpassword = req.body.password;
+      const regemail = req.body.email;
+      const regusername = req.body.usersname;
+      const regname = req.body.name;
+      const regpassword = req.body.password;
 
-    admin
-    const adminregemail = req.body.email;
-    const adminregusername = req.body.usersname;
-    const adminregname = req.body.name;
-    const adminregpassword = req.body.password;
+    // admin
+    // const adminregemail = req.body.email;
+    // const adminregusername = req.body.usersname;
+    // const adminregname = req.body.name;
+    // const adminregpassword = req.body.password;
 
-    // const reguser = await User.findOne({username : regusername , password : regpassword});
-    //     if (reguser) {
-    //     res.redirect('login');
-    //     } else {
-    //     const unreguser = new User({name: regname, email: regemail, username: regusername, password: regpassword});
-    //     unreguser.save();
-    //     }
-        
-      const regadmin = await Admin.findOne({username : adminregusername , password : adminregpassword});
-        if (regadmin) {
-        res.redirect('/');
+    const reguser = await User.findOne({username : regusername , password : regpassword});
+        if (reguser) {
+        return res.redirect('login');
         } else {
-        const unregadmin = new Admin({name: adminregname, email: adminregemail, username: adminregusername, password: adminregpassword});
-        unregadmin.save();
+        const unreguser = new User({name: regname, email: regemail, username: regusername, password: regpassword});
+        unreguser.save();
         }
+        
+      // const regadmin = await Admin.findOne({username : adminregusername , password : adminregpassword});
+      //   if (regadmin) {
+      //     return res.redirect('/');
+      //   } else {
+      //   const unregadmin = new Admin({name: adminregname, email: adminregemail, username: adminregusername, password: adminregpassword});
+      //   unregadmin.save();
+      //   }
 
 })
 
