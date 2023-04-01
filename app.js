@@ -31,9 +31,10 @@ db.connect();
 app.use(session({
     secret: "jklfsodifjsktnwjasdp465dd", // Never ever share this secret in production, keep this in separate file on environmental variable
     variableresave: false,
+    resave:true,
     saveUninitialized: true,
     cookie: { maxAge: 3600000 }, //oneS hour
-    mongoUrl : ({mongoUrl: "mongodb://127.0.0.1:27017/TiguSDB"}),
+    mongoUrl : ({mongoUrl: "mongodb+srv://thanap151255:strike151255!@theprojectdevops.rt6r3hr.mongodb.net/TiguSDB"}),
   }));
 
 app.get("/" ,(req,res) =>{
