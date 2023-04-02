@@ -378,8 +378,17 @@ app.post("/order", async (req, res) => {
 app.get("/admin", adminAuth.authenticationadmin, async (req, res) => {
   try {
     const admin = await Admin.findById(req.session.userId);
+    const allOrder = await Order.find().lean();       
+    const allUser = await User.find().lean();
     if (admin) {
-      res.render("admin");
+       {
+        res.render('admin',{
+          admin: admin,
+          orders: allOrder,
+          allUser: allUser
+  
+        })
+      }
     } else {
       res.redirect("/logadmin");
     }
