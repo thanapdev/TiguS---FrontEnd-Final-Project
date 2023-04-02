@@ -34,6 +34,7 @@
                   <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-dark">Total Price</span>
                   </h4>
+                  
                   <ul class="list-group mb-3">
                     <% let totalPrice = 0; %>
                     <% cartItems.forEach(item => { %>
@@ -53,35 +54,44 @@
                       <span>Total (THB)</span>
                       <strong><%= totalPrice %></strong>
                     </li>
+                    <div class="card p-3 mt-3">
+                      <button type="submit" class="btn btn-success">Checkout</button>
+                    </div>
                   </ul>
-                  <!-- <ul class="list-group mb-3">
-                    <% cartItems.forEach(item => { %>
-                      <% menus.forEach(menu => { %>
-                        <% if (item.itemId == menu._id) { %>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                      <div>
-                        <h6 class="my-0"><%= menu.name %></h6>
-                      </div>
-                      <span class="text-muted">THB : <%= menu.price %></span>
-                    </li>
-                    
-                    <% } %>
-                    <% }) %>
-                    <% }) %>
-                    <li class="list-group-item d-flex justify-content-between">
-                      <span>Total (THB)</span>
-                      <strong></strong>
-                    </li>
-                  </ul> -->
-
-                  <div class="card p-3">
-                    <button type="button" class="btn btn-success">Checkout</button>
-                  </div>
+                
                 </div>
                 <div class="col-md-7 col-lg-8 p-3 rounded-3 border shadow-lg">
+                  <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-dark">Your cart</span>
+                  </h4>
+                  <form action="/checkout" method="get">
+                    <ul class="list-group mb-3">
+                      <% cartItems.forEach(item => { %>
+                        <% menus.forEach(menu => { %>
+                          <% if (item.itemId == menu._id) { %>
+                            <li class="list-group-item d-flex justify-content-between lh-sm align-items-center">
+                              <div>
+                                <h6 class="my-0"><%= menu.name %></h6>
+                                <small class="text-muted">THB : <%= menu.price %></small>
+                              </div>
+                              <div class="d-flex">
+                                <button type="button" onclick="updateCartItemQuantity('<%= menu._id %>', -1)" class="btn btn-success me-2">-</button>
+                                <span class="pe-3 ps-3 pt-2"><%= item.quantity %></span>
+                                <button type="button" onclick="updateCartItemQuantity('<%= menu._id %>', 1)" class="btn btn-success">+</button>
+                              </div>
+                            </li>
+                          <% } %>
+                        <% }) %>
+                      <% }) %>
+                    </ul>
+                  </form>
+                </div>
+                
+                <!-- <div class="col-md-7 col-lg-8 p-3 rounded-3 border shadow-lg">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-dark">Your cart</span>
                       </h4>
+                      <form action="/checkout" method="get"></form>
                       <ul class="list-group mb-3">
                         <% cartItems.forEach(item => { %>
                           <% menus.forEach(menu => { %>
@@ -104,10 +114,13 @@
                     <% }) %>
                         
                       </ul>
-
+                    </form>
                       
-                </div>
+                </div> -->
               </div>
+            </div>
+            <div class="d-flex justify-content-center my-5">
+              <a href="javascript:history.back()" class="btn btn-danger">Go Back</a>
             </div>
     </section>
     <!-- end order -->

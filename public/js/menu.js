@@ -138,11 +138,8 @@ var product = [{
                                         <p class="card-text text-dark">${product[i].descrpition}</p>
                                         <div class="d-flex justify-content-between ">
                                             <div class="btn-group">
-                                                <button onclick="addtocart(${i})" class="btn btn-outline-success ">
-                                                    Add to Cart
-                                                </button>
                                                 <button onclick="addItemToCart(${product[i].id}, 1)" class="btn btn-outline-success ">
-                                                    Add to Cart 2
+                                                    Add to Cart
                                                 </button>
                                             </div>
                                         </div>

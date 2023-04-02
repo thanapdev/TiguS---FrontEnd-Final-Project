@@ -81,8 +81,13 @@ app.get("/menu" ,async (req,res) =>{
     })
 })
 
-app.get("/picorder" ,(req,res) =>{
-    res.render('picorder')
+app.get("/picorder" ,async (req,res) =>{
+  let cartItem = await cartUser.findOne({ userId: req.session.userId });
+    let allMenu = await Menu.find().lean()
+    res.render('picorder',{
+    cartItems: cartItem.items,
+    menus: allMenu
+  })
 })
 
 app.get("/order" ,async (req,res) =>{
