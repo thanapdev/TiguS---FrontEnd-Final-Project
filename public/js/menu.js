@@ -141,6 +141,9 @@ var product = [{
                                                 <button onclick="addtocart(${i})" class="btn btn-outline-success ">
                                                     Add to Cart
                                                 </button>
+                                                <button onclick="addItemToCart(${product[i].id}, 1)" class="btn btn-outline-success ">
+                                                    Add to Cart 2
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -149,6 +152,23 @@ var product = [{
             $("#productlist").html(html);
         }
     })
+
+    function addItemToCart(itemId, quantity) {
+        fetch("/cart/add", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ itemId, quantity }),
+        })
+          .then((_response) => location.reload())
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
 
     function searchproduct(param) {
         console.log(param)
@@ -173,15 +193,24 @@ var product = [{
                 pass = false;
             }
         }
+
+        // for (let i = 0; i < cart.items.length; i++) {
+        //     if( index == cart[i].items.itemId ) {
+        //         console.log(index == cart[i].items.itemId)
+        //         console.log('found same product')
+        //         cart[i].items.quantity++;
+        //         pass = false;
+        //     }
+        // }
     
         if(pass) {
             var obj = {
                 index: index,
-                id: product[index].id,
+                itemId: product[index].id,
                 name: product[index].name,
                 price: product[index].price,
                 img: product[index].img,
-                count: 1
+                quantity: 1
             };
             // console.log(obj)
             cart.push(obj)
@@ -201,33 +230,20 @@ var product = [{
     }
     
     
-    function rendercart() {
-        if(cart.length > 0) {
-            var htmlcart = '';
-            for (let i = 0; i < cart.length; i++) {
-                htmlcart += `<div class="row row-cols-1 row-cols-sm-3 row-cols-md-3 mb-2">
-                                <div class="col-4 text-center">
-                                <img src="${cart[i].img}" style="width: 100px; height: 100px; border-radius: 1.5vw;" alt="">
-                            </div>
-                            <div class="col-4 text-center">
-                                <p class="">${cart[i].name}</p>
-                                <p class="">${cart[i].price * cart[i].count} THB</p>
-                            </div>
-                            <div class="col-4 text-center">
-                                <div class="input-group">
-                                    <p onclick="deinitems('-', ${i})" class="btn btn-success">-</p>
-                                    <p id="countitems${i}" class="pe-3 ps-3 pt-2">${cart[i].count}</p>
-                                    <p onclick="deinitems('+', ${i})" class="btn btn-success">+</p>
-                                    </div>
-                                </div>
-                            </div>`;
-            }
-            $("#mycart").html(htmlcart)
-        }
-        else {
-            $("#mycart").html(`<p>Your cart is currently empty.</p>`)
-        }
-    }
+    // async function rendercart() {
+    //     // const cart = await cartUser.findOne({ userId: req.session.userId });
+    //     // console.log(cart)
+    //     if(cart.length > 0) {
+    //         var htmlcart = '';
+    //         for (let i = 0; i < cart.length; i++) {
+    //             htmlcart += ``;
+    //         }
+    //         $("#mycart").html(htmlcart)
+    //     }
+    //     else {
+    //         $("#mycart").html(`<p>Your cart is currently empty.</p>`)
+    //     }
+    // }
     
     
     function deinitems(action, index) {

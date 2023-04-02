@@ -70,14 +70,39 @@
                       aria-label="Close"
                       ></button>
                   </div>
-                  <form id="cart-form" action="/order" method="post">
+                  <form id="cart-form" action="/order" method="get">
+                    <!--  -->
+                    <% cartItems.forEach(item => { %>
+                      <% menus.forEach(menu => { %>
+                        <% if (item.itemId == menu._id) { %>
                     <div class="modal-body" id="mycart">
                       <!-- cart item -->
+                      <div class="row row-cols-1 row-cols-sm-3 row-cols-md-3 mb-2">
+                        <div class="col-4 text-center">
+                        <img src="<%= menu.img %>" style="width: 100px; height: 100px; border-radius: 1.5vw;" alt="">
+                    </div>
+                    <div class="col-4 text-center">
+                        <p class=""><%= menu.name %></p>
+                        <p class=""><%= menu.price %> THB</p>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div class="input-group">
+                            <p onclick="updateCartItemQuantity('<%= menu._id %>', -1)" class="btn btn-success">-</p>
+                            <p id="" class="pe-3 ps-3 pt-2"><%= item.quantity %></p>
+                            <p onclick="updateCartItemQuantity('<%= menu._id %>', 1)" class="btn btn-success">+</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <% } %>
+                    <% }) %>
+                    <% }) %>
+                    <!--  -->
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-success">Checkout</button>
                     </div>
                   </form>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Checkout</button>
-                  </div>
+                  
                   </div>
               </div>
               </div>
@@ -86,3 +111,21 @@
         </nav>
   </section>
   <!-- end nav -->
+  <script>
+    function updateCartItemQuantity(itemId, quantityChange) {
+        fetch("/cart/update", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ itemId, quantityChange }),
+        })
+          .then((response) => location.reload())
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+  </script>
