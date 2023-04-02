@@ -99,245 +99,110 @@
                       <thead>
                         <tr>
                           <th scope="col">Order ID</th>
-                          <th scope="col">Product name</th>
                           <th scope="col">Customer name</th>
-                          <th scope="col">Total</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Status</th>
 
                           <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">17371705</th>
-                          <td>Volt Premium Bootstrap 5 Dashboard</td>
-                          <td>johndoe@gmail.com</td>
-                          <td>
-                            <div class="dropdown1">
-                              <button
-                                class="btn btn-info dropdown-toggle"
-                                type="button"
-                                id="dropdownMenuButton1"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                Status 1
-                              </button>
-
-                              <div
-                                class="dropdown-menu"
-                                aria-labelledby="dropdown"
-                                id="dropdown"
-                              >
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-value="On Cooking"
-                                  >On Cooking</a
-                                >
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-value="Rider Take your order"
-                                  >Rider Take your order</a
-                                >
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-value="Order Arrived"
-                                  >Order Arrived</a
-                                >
-                                
-                              </div>
-                            </div>
-                          </td>
-
-                          <td>
-                            <a href="#" class="btn btn-sm btn-primary">View</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">17371705</th>
-                          <td>Volt Premium Bootstrap 5 Dashboard</td>
-                          <td>johndoe@gmail.com</td>
-                          <td>
-                            <div class="dropdown2">
-                              <button
-                                class="btn btn-info dropdown-toggle"
-                                type="button"
-                                id="dropdownMenuButton2"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                Status 2
-                              </button>
-
-                              <div
-                                class="dropdown-menu"
-                                aria-labelledby="dropdown"
-                                id="dropdown"
-                              >
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-value="On Cooking"
-                                  >On Cooking</a
-                                >
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-value="Rider Take your order"
-                                  >Rider Take your order</a
-                                >
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-value="Order Arrived"
-                                  >Order Arrived</a
-                                >
-                                
-                              </div>
-                            </div>
-                          </td>
-
-                          <td>
-                            <a href="#" class="btn btn-sm btn-primary">View</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">17371705</th>
-                          <td>Volt Premium Bootstrap 5 Dashboard</td>
-                          <td>johndoe@gmail.com</td>
-                          <td>
-                            <div class="dropdown3">
-                              <button
-                                class="btn btn-info dropdown-toggle"
-                                type="button"
-                                id="dropdownMenuButton3"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                Status 3
-                              </button>
-
-                              <div
-                                class="dropdown-menu"
-                                aria-labelledby="dropdown"
-                                id="dropdown"
-                              >
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-value="On Cooking"
-                                  >On Cooking</a
-                                >
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-value="Rider Take your order"
-                                  >Rider Take your order</a
-                                >
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-value="Order Arrived"
-                                  >Order Arrived</a
-                                >
-                                
-                              </div>
-                            </div>
-                          </td>
-
-                          <td>
-                            <a href="#" class="btn btn-sm btn-primary">View</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">17370540</th>
-                          <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                          <td>jacob.monroe@company.com</td>
-                          <td>
-                            <div class="dropdown">
-                              <button
-                                class="btn btn-info dropdown-toggle"
-                                type="button"
-                                id="dropdownMenuButton4"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                Status 4
-                              </button>
-                              <div
-                                class="dropdown-menu"
-                                aria-labelledby="dropdown"
-                                id="dropdown"
-                              >
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-value="On Cooking"
-                                  >On Cooking</a
-                                >
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-value="Rider Take your order"
-                                  >Rider Take your order</a
-                                >
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-value="Order Arrived"
-                                  >Order Arrived</a
-                                >
-                                
-                              </div>
-                            </div>
-                            <script>
-                              function createDropdown(buttonId, itemsSelector) {
-                                // Get the dropdown button and dropdown items
-                                const dropdownButton = document.getElementById(buttonId);
-                                const dropdownItems = dropdownButton.nextElementSibling.querySelectorAll(itemsSelector);
-                            
-                                // Add a click event listener to each dropdown item
-                                dropdownItems.forEach((item) => {
-                                  item.addEventListener('click', (event) => {
-                                    // Prevent the default link behavior
-                                    event.preventDefault();
-                            
-                                    // Get the value of the clicked dropdown item
-                                    const value = item.dataset.value;
-                            
-                                    // Update the text of the dropdown button
-                                    dropdownButton.textContent = value;
-                                  });
-                                });
-                              }
-                            
-                              // Create the first dropdown
-                              createDropdown('dropdownMenuButton1', '.dropdown-item');
-                            
-                              // Create the second dropdown
-                              createDropdown('dropdownMenuButton2', '.dropdown-item');
-
-                              // Create the third dropdown
-                              createDropdown('dropdownMenuButton3', '.dropdown-item');
-
-                              // Create the fourth dropdown
-                              createDropdown('dropdownMenuButton4', '.dropdown-item');
-                            </script>
-                          </td>
-
-                          <td>
-                            <a href="#" class="btn btn-sm btn-primary">View</a>
-                          </td>
-                        </tr>
+                        
+                        <% orders.forEach(order => { %>
+                          <% allUser.forEach(user => { %>
+          
+                                   <% if (order.userId == user._id) { %>
+                                    <tr>
+                                      <th scope="row"><%= order.userId %></th>
+                                      <td><%= user.username %></td>
+                                      <td><%= order.orderDate %></td>
+                                      <td>
+                                        <div class="dropdown">
+                                          <button
+                                            class="btn btn-info dropdown-toggle"
+                                            type="button"
+                                            id="dropdownMenuButton1"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                          >
+                                            Status 
+                                          </button>
+                                          <div
+                                            class="dropdown-menu"
+                                            aria-labelledby="dropdown"
+                                            id="dropdown"
+                                          >
+                                            <a
+                                              class="dropdown-item"
+                                              href="#"
+                                              data-value="On Cooking"
+                                              >On Cooking</a
+                                            >
+                                            <a
+                                              class="dropdown-item"
+                                              href="#"
+                                              data-value="Rider Take your order"
+                                              >Rider Take your order</a
+                                            >
+                                            <a
+                                              class="dropdown-item"
+                                              href="#"
+                                              data-value="Order Arrived"
+                                              >Order Arrived</a
+                                            >
+                                            <a
+                                              class="dropdown-item"
+                                              href="#"
+                                              data-value="Order Arrived"
+                                              >Status</a
+                                            >
+                                            
+                                          </div>
+                                        </div>
+                                        <script>
+                                          function createDropdown(buttonId, itemsSelector) {
+                                            // Get the dropdown button and dropdown items
+                                            const dropdownButton = document.getElementById(buttonId);
+                                            const dropdownItems = dropdownButton.nextElementSibling.querySelectorAll(itemsSelector);
+                                        
+                                            // Add a click event listener to each dropdown item
+                                            dropdownItems.forEach((item) => {
+                                              item.addEventListener('click', (event) => {
+                                                // Prevent the default link behavior
+                                                event.preventDefault();
+                                        
+                                                // Get the value of the clicked dropdown item
+                                                const value = item.dataset.value;
+                                        
+                                                // Update the text of the dropdown button
+                                                dropdownButton.textContent = value;
+                                              });
+                                            });
+                                          }
+                                        
+                                          // Create the first dropdown
+                                          createDropdown('dropdownMenuButton1', '.dropdown-item');
+                                        
+                                      
+                                        </script>
+                                      </td>
+            
+                                      
+                                    </tr>
+                          
+                                <% } %>
+                            <% }) %>
+                          <% }) %>
+                              
+                        
+                          
                       </tbody>
                     </table>
                   </div>
+
+
+
                   <a href="#" class="btn btn-block btn-light">View all</a>
                 </div>
               </div>
