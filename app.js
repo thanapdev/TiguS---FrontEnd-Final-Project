@@ -2,20 +2,20 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const connect = require("mongoose");
-const db = require('./config/db.js');
+const db = require("./config/db.js");
 const { name } = require("ejs");
 const { MongoClient } = require("mongodb");
 const session = require("express-session");
-const Swal = require('sweetalert');
-const flash = require('connect-flash');
+const Swal = require("sweetalert");
+const flash = require("connect-flash");
+const adminAuth = require("./control/adminauth");
+const at = require("./control/authen");
 
-
-const {cartUser} = require("./model/cart")
-const {Menu} = require("./model/food")
-const adminAuth = require('./control/adminauth');
-const at =require('./control/authen');
-const {User} = require('./model/user');
-const {Admin} = require('./model/admin');
+const { Order } = require("./model/order.js");
+const { cartUser } = require("./model/cart");
+const { Menu } = require("./model/food");
+const { User } = require("./model/user");
+const { Admin } = require("./model/admin");
 
 const menus = require("./public/js/menus");
 // Configure session middleware
@@ -34,14 +34,19 @@ app.use(bodyParser.json());
 
 db.connect();
 
-app.use(session({
+app.use(
+  session({
     secret: "jklfsodifjsktnwjasdp465dd", // Never ever share this secret in production, keep this in separate file on environmental variable
     variableresave: false,
-    resave:true,
+    resave: true,
     saveUninitialized: true,
     cookie: { maxAge: 3600000 }, //oneS hour
-    mongoUrl : ({mongoUrl: "mongodb+srv://thanap151255:strike151255!@theprojectdevops.rt6r3hr.mongodb.net/TiguSDB"}),
-  }));
+    mongoUrl: {
+      mongoUrl:
+        "mongodb+srv://thanap151255:strike151255!@theprojectdevops.rt6r3hr.mongodb.net/TiguSDB",
+    },
+  })
+);
 
 // let menuList = [];
 // for (let i = 0; i < 17; i++) {
@@ -65,39 +70,39 @@ app.use(session({
 //   .catch(() => {
 //   });
 
-app.get("/" ,(req,res) =>{
-    res.render('index')
-})
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
-app.get("/menu" ,async (req,res) =>{
-    let cartItem = await cartUser.findOne({ userId: req.session.userId });
-    let allMenu = await Menu.find().lean()
-    // console.log(cartItem.items[0].itemId)
-    // console.log(allMenu)
-
-    res.render('menu', {
-      cartItems: cartItem.items,
-      menus: allMenu
-    })
-})
-
-app.get("/picorder" ,async (req,res) =>{
+app.get("/menu", async (req, res) => {
   let cartItem = await cartUser.findOne({ userId: req.session.userId });
-    let allMenu = await Menu.find().lean()
-    res.render('picorder',{
+  let allMenu = await Menu.find().lean();
+  // console.log(cartItem.items[0].itemId)
+  // console.log(allMenu)
+
+  res.render("menu", {
     cartItems: cartItem.items,
-    menus: allMenu
-  })
-})
+    menus: allMenu,
+  });
+});
 
-app.get("/order" ,async (req,res) =>{
+app.get("/picorder", async (req, res) => {
   let cartItem = await cartUser.findOne({ userId: req.session.userId });
-    let allMenu = await Menu.find().lean()
-    res.render('order', {
-      cartItems: cartItem.items,
-      menus: allMenu
-    })
-})
+  let allMenu = await Menu.find().lean();
+  res.render("picorder", {
+    cartItems: cartItem.items,
+    menus: allMenu,
+  });
+});
+
+app.get("/order", async (req, res) => {
+  let cartItem = await cartUser.findOne({ userId: req.session.userId });
+  let allMenu = await Menu.find().lean();
+  res.render("order", {
+    cartItems: cartItem.items,
+    menus: allMenu,
+  });
+});
 
 app.post("/cart/update", async (req, res) => {
   const userId = req.session.userId;
@@ -141,69 +146,77 @@ app.post("/cart/update", async (req, res) => {
 //   res.redirect('/order')
 // })
 
-app.get("/checkout" ,(req,res) =>{
-    res.render('checkout')
-})
+app.get("/checkout", async (req, res) => {
+  let cartItem = await cartUser.findOne({ userId: req.session.userId });
+  let allMenu = await Menu.find().lean();
+  res.render("checkout", {
+    cartItems: cartItem.items,
+    menus: allMenu,
+  });
+});
 
-app.get("/delivery" ,(req,res) =>{
-    res.render('delivery')
-})
+app.get("/delivery", async (req, res) => {
+  let cartItem = await cartUser.findOne({ userId: req.session.userId });
+  let allMenu = await Menu.find().lean();
+  res.render("delivery", {
+    cartItems: cartItem.items,
+    menus: allMenu,
+  });
+});
 
-app.get("/logadmin" ,(req,res) =>{
-    res.render('logadmin')
-})
+app.get("/logadmin", (req, res) => {
+  res.render("logadmin");
+});
 
-app.get("/logadmin" ,(req,res) =>{
-  res.render('logadmin')
-})
+app.get("/logadmin", (req, res) => {
+  res.render("logadmin");
+});
 
+app.get("/login", (req, res) => {
+  res.render("login");
+});
 
-app.get("/login" ,(req,res) =>{
-    res.render('login')
- })
-
- app.post('/login', async (req, res) => {
+app.post("/login", async (req, res) => {
   let username = req.body.usersname;
   let password = req.body.password;
-  
+
   // Use 'username' instead of 'usersname' in the following line
   let oldUser = await User.findOne({ username: username, password: password });
-  
-  
+
   if (oldUser) {
-      req.session.userId = oldUser.id;
+    req.session.userId = oldUser.id;
 
-      console.log(req.session);
-      console.log(`Username: ${oldUser.username}`); // Log the username
-      res.redirect('/home');
+    console.log(req.session);
+    console.log(`Username: ${oldUser.username}`); // Log the username
+    res.redirect("/home");
   } else {
-      res.redirect('/login');
+    res.redirect("/login");
   }
-}); 
+});
 
-app.post('/logadmin', async (req,res)=>{
+app.post("/logadmin", async (req, res) => {
   // Get user input using bodyParser
-  const  username  = req.body.adminusersname;
-  const  password  = req.body.adminpassword;
+  const username = req.body.adminusersname;
+  const password = req.body.adminpassword;
   // check if user already exist
   // Validate if user exist in our database
-  const oldAdmin = await Admin.findOne({ username: username, password: password });
-  console.log(oldAdmin)
+  const oldAdmin = await Admin.findOne({
+    username: username,
+    password: password,
+  });
+  console.log(oldAdmin);
 
   if (oldAdmin) {
-      // User already exist >> update session information
-      req.session.userId = oldAdmin.id;
-      console.log(req.session);
-      // console.log(`Username: ${oldAdmin.username}`); // Log the username
-      res.redirect('/admin');
-     } else {
-    
-      req.flash('message','Check your email and password.');
-      res.redirect('/logadmin')
- 
+    // User already exist >> update session information
+    req.session.userId = oldAdmin.id;
+    console.log(req.session);
+    // console.log(`Username: ${oldAdmin.username}`); // Log the username
+    res.redirect("/admin");
+  } else {
+    req.flash("message", "Check your email and password.");
+    res.redirect("/logadmin");
   }
-  
-})
+});
 
 //  app.post('/login', async (req, res) => {
 //   const usersname = req.body.usersname;
@@ -235,7 +248,7 @@ app.post('/logadmin', async (req,res)=>{
 
 let superHero, batManID, spiderMan;
 
-app.get('/home', at.authentication, async (req, res) => {
+app.get("/home", at.authentication, async (req, res) => {
   try {
     const user = await User.findById(req.session.userId);
     superHero = user;
@@ -249,7 +262,7 @@ app.get('/home', at.authentication, async (req, res) => {
       //   cart = new cartUser({
       //     userId: superHero._id,
       //     items: [],
-      //   }); 
+      //   });
       //   await cart.save();
       // //   batManID = newCart._id;
       // // } else {
@@ -257,18 +270,18 @@ app.get('/home', at.authentication, async (req, res) => {
       // // }
       // }
       let cartItem = await cartUser.findOne({ userId: req.session.userId });
-      let allMenu = await Menu.find().lean()
-      res.render('home', { 
-        username: user.username, 
+      let allMenu = await Menu.find().lean();
+      res.render("home", {
+        username: user.username,
         cartItems: cartItem.items,
-        menus: allMenu 
+        menus: allMenu,
       });
     } else {
-      res.redirect('/');
+      res.redirect("/");
     }
   } catch (error) {
-    console.error('Error retrieving user:', error);
-    res.status(500).send('Internal Server Error');
+    console.error("Error retrieving user:", error);
+    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -294,7 +307,7 @@ app.post("/cart/add", async (req, res) => {
       (item) => item.itemId == itemId
     );
 
-      console.log(existingItemIndex)
+    console.log(existingItemIndex);
     if (existingItemIndex !== -1) {
       // If the item is already in the cart, update its quantity
       cart.items[existingItemIndex].quantity += quantity;
@@ -313,68 +326,118 @@ app.post("/cart/add", async (req, res) => {
   }
 });
 
-
-
-app.get('/admin', adminAuth.authenticationadmin, async (req, res) => {
+app.post("/order", async (req, res) => {
+  const userId = req.session.userId;
   try {
-    const admin = await Admin.findById(req.session.userId);
-    if (admin) {
-      res.render('admin');
+    // const { cartItems } = req.body;
+    const cart = await cartUser.findOne({ userId: userId });
+    console.log(cart);
+
+    const userOrder = await Order.findOne({ userId: userId }).lean();
+
+    if (!userOrder) {
+      // Create a new order
+      const newOrder = new Order({
+        userId: userId,
+        items: cart.items,
+        orderDate: new Date(),
+        status: "Pending",
+      });
+
+      // Save the new order
+      await newOrder.save();
+
+      // Empty the user's cart
+      cart.items = [];
+      await cart.save();
+      res.redirect("/delivery");
     } else {
-      res.redirect('/logadmin'); 
+      const newOrder = new Order({
+        userId: userId,
+        items: cart.items,
+        orderDate: new Date(),
+        status: "Pending",
+      });
+
+      // Save the new order
+      await newOrder.save();
+
+      // Empty the user's cart
+      cart.items = [];
+      await cart.save();
+      res.redirect("/delivery");
     }
+
+    // res.json({ message: "Order submitted successfully" });
   } catch (error) {
-    console.error('Error retrieving admin:', error);
-    res.status(500).send('Internal Server Error');
+    console.error("Error submitting order:", error);
+    res.status(500).json({ message: "Error submitting order" });
   }
 });
 
+app.get("/admin", adminAuth.authenticationadmin, async (req, res) => {
+  try {
+    const admin = await Admin.findById(req.session.userId);
+    if (admin) {
+      res.render("admin");
+    } else {
+      res.redirect("/logadmin");
+    }
+  } catch (error) {
+    console.error("Error retrieving admin:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
+app.get("/register", (req, res) => {
+  return res.render("register");
+});
 
-app.get("/register" ,(req,res) =>{
-   return res.render('register')
- })
-
-app.post('/register', async(req,res) => {
+app.post("/register", async (req, res) => {
   // user
-      const regemail = req.body.email;
-      const regusername = req.body.usersname;
-      const regname = req.body.name;
-      const regpassword = req.body.password;
+  const regemail = req.body.email;
+  const regusername = req.body.usersname;
+  const regname = req.body.name;
+  const regpassword = req.body.password;
 
-    // admin
-    // const adminregemail = req.body.email;
-    // const adminregusername = req.body.usersname;
-    // const adminregname = req.body.name;
-    // const adminregpassword = req.body.password;
+  // admin
+  // const adminregemail = req.body.email;
+  // const adminregusername = req.body.usersname;
+  // const adminregname = req.body.name;
+  // const adminregpassword = req.body.password;
 
-    const reguser = await User.findOne({username : regusername , password : regpassword});
-        if (reguser) {
-        return res.redirect('login');
-        } else {
-        const unreguser = new User({name: regname, email: regemail, username: regusername, password: regpassword});
-        unreguser.save();
-        res.redirect('/login')
-        }
-        
-      // const regadmin = await Admin.findOne({username : adminregusername , password : adminregpassword});
-      //   if (regadmin) {
-      //     return res.redirect('/');
-      //   } else {
-      //   const unregadmin = new Admin({name: adminregname, email: adminregemail, username: adminregusername, password: adminregpassword});
-      //   unregadmin.save();
-      //   }
-
-})
-
-app.post('/logout',(req,res)=>{
-  req.session.destroy(function (err) {
-      res.redirect('/'); 
+  const reguser = await User.findOne({
+    username: regusername,
+    password: regpassword,
   });
-})
+  if (reguser) {
+    return res.redirect("login");
+  } else {
+    const unreguser = new User({
+      name: regname,
+      email: regemail,
+      username: regusername,
+      password: regpassword,
+    });
+    unreguser.save();
+    res.redirect("/login");
+  }
 
+  // const regadmin = await Admin.findOne({username : adminregusername , password : adminregpassword});
+  //   if (regadmin) {
+  //     return res.redirect('/');
+  //   } else {
+  //   const unregadmin = new Admin({name: adminregname, email: adminregemail, username: adminregusername, password: adminregpassword});
+  //   unregadmin.save();
+  //   }
+});
 
+app.post("/logout", (req, res) => {
+  req.session.destroy(function (err) {
+    res.redirect("/");
+  });
+});
 
 app.listen(3000, function () {
-    console.log("Server app listening on port 3000");
+  console.log("Server app listening on port 3000");
 });

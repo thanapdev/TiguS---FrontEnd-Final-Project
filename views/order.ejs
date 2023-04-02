@@ -54,11 +54,14 @@
                       <span>Total (THB)</span>
                       <strong><%= totalPrice %></strong>
                     </li>
+                    <form action="/order" method="post">
                     <div class="card p-3 mt-3">
                       <button type="submit" class="btn btn-success">Checkout</button>
                     </div>
+                  </form>
                   </ul>
                 
+                 
                 </div>
                 <div class="col-md-7 col-lg-8 p-3 rounded-3 border shadow-lg">
                   <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -84,39 +87,78 @@
                         <% }) %>
                       <% }) %>
                     </ul>
+                     <!--  -->
+                  <div class="col-md-12 col-lg-12 p-4 rounded-3 border">
+                    <h4 class="mb-3">Billing address</h4>
+                    
+                      <div class="row g-3">
+            
+                        <div class="col-12">
+                          <label for="address" class="form-label">Address</label>
+                          <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+                          <div class="invalid-feedback">
+                            Please enter your shipping address.
+                          </div>
+                        </div>
+            
+                        <div class="col-md-5">
+                          <label for="country" class="form-label">Country</label>
+                          <select class="form-select" id="country" required="">
+                            <option value="">Choose...</option>
+                            <option>Thailand</option>
+                          </select>
+                          <div class="invalid-feedback">
+                            Please select a valid country.
+                          </div>
+                        </div>
+            
+                        <div class="col-md-4">
+                          <label for="state" class="form-label">Province</label>
+                          <select class="form-select" id="state" required="">
+                            <option value="">Choose...</option>
+                            <option>Chiang mai</option>
+                          </select>
+                          <div class="invalid-feedback">
+                            Please provide a valid state.
+                          </div>
+                        </div>
+            
+                        <div class="col-md-3">
+                          <label for="zip" class="form-label">Zip</label>
+                          <input type="text" class="form-control" id="zip" placeholder=" for example 50200" required="">
+                          <div class="invalid-feedback">
+                            Zip code required.
+                          </div>
+                        </div>
+                      </div>
+            
+                      <hr class="my-4"> 
+            
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="save-info">
+                        <label class="form-check-label" for="save-info">Save this information for next time</label>
+                      </div>
+            
+                      <hr class="my-4">
+            
+                      <h4 class="mb-3">Payment</h4>
+            
+                      <div class="my-3">
+                        <div class="form-check">
+                          <input id="cash" name="paymentMethod" type="radio" class="form-check-input" checked="" required="">
+                          <label class="form-check-label" for="cash">Cash</label>
+                        </div>
+                        <div class="form-check">
+                          <input id="qrcode" name="paymentMethod" type="radio" class="form-check-input" required="">
+                          <label class="form-check-label" for="qrcode">QR code</label>
+                        </div>
+                      </div>
+            
+                      <hr class="my-4">
+                  </div>
+                      <!--  -->
                   </form>
                 </div>
-                
-                <!-- <div class="col-md-7 col-lg-8 p-3 rounded-3 border shadow-lg">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-dark">Your cart</span>
-                      </h4>
-                      <form action="/checkout" method="get"></form>
-                      <ul class="list-group mb-3">
-                        <% cartItems.forEach(item => { %>
-                          <% menus.forEach(menu => { %>
-                            <% if (item.itemId == menu._id) { %>
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                          <div>
-                            <h6 class="my-0"><%= menu.name %></h6>
-                            <small class="text-muted">THB : <%= menu.price %></small>
-                          </div>
-                          <div>
-                            <span>
-                              <p  onclick="updateCartItemQuantity('<%= menu._id %>', -1)" class="btn btn-success">-</p>
-                              <p class="pe-3 ps-3 pt-2"><%= item.quantity %></p>
-                              <p onclick="updateCartItemQuantity('<%= menu._id %>', 1)" class="btn btn-success">+</p>
-                            </span>
-                          </div>
-                        </li>
-                        <% } %>
-                    <% }) %>
-                    <% }) %>
-                        
-                      </ul>
-                    </form>
-                      
-                </div> -->
               </div>
             </div>
             <div class="d-flex justify-content-center my-5">
@@ -130,6 +172,7 @@
      <!-- end footer -->
 
     <!-- bootstrap js -->
+    <script src="/js/admin.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
